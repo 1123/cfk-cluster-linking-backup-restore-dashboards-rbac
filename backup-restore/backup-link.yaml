@@ -1,0 +1,31 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: ClusterLink
+metadata:
+  name: backup-link
+  namespace: confluent
+spec:
+  destinationKafkaCluster:
+    kafkaRestClassRef:
+      name: krc-backup
+      namespace: confluent
+  sourceKafkaCluster: 
+    tls:
+      enabled: true
+      secretRef: controlcenter-generated-jks
+    bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+    authentication:
+      type: plain
+      jaasConfig:
+        secretRef: credential
+    kafkaRestClassRef:
+      name: krc-destination
+      namespace: confluent
+  consumerGroupFilters: 
+    - name: "*"
+      patternType: LITERAL
+      filterType: INCLUDE
+  aclFilters: 
+  configs: 
+  mirrorTopics: 
+    - name: sampletopic
+      state: ACTIVE
