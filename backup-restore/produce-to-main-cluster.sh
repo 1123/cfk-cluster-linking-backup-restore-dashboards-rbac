@@ -4,6 +4,6 @@ kubectl exec kafka-0 -n confluent -- \
     --topic sampletopic \
     --producer-props bootstrap.servers=kafka.confluent.svc.cluster.local:9071 \
     --producer.config /tmp/destination.properties \
-    --num-records 10 \
-    --throughput 10 \
-    --record-size 10000
+    --num-records 1000 \
+    --throughput 100 \
+    --record-size 10
