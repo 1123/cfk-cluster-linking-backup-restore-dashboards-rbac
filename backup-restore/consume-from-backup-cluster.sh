@@ -3,5 +3,6 @@ kubectl exec backup-kafka-0 -n confluent -- \
     --topic sampletopic \
     --bootstrap-server backup-kafka.confluent.svc.cluster.local:9071 \
     --consumer-property commit.interval.ms=10 \
+    --consumer-property group.id=xyz \
     --max-messages 1000 \
     --from-beginning

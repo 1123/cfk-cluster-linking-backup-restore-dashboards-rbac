@@ -1,0 +1,24 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: ClusterLink
+metadata:
+  name: restore-link
+  namespace: confluent
+spec:
+  destinationKafkaCluster:
+    kafkaRestClassRef:
+      name: krc-destination
+      namespace: confluent
+  sourceKafkaCluster: 
+    bootstrapEndpoint: backup-kafka:9092
+    kafkaRestClassRef:
+      name: krc-backup
+      namespace: confluent
+  consumerGroupFilters: 
+    - name: "*"
+      patternType: LITERAL
+      filterType: INCLUDE
+  aclFilters: 
+  configs: 
+  mirrorTopics: 
+    - name: sampletopic
+      state: ACTIVE
