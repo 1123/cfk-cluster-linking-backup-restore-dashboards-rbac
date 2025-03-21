@@ -1,2 +1,0 @@
-username=cn=admin,dc=test,dc=com
-password=confluentrox

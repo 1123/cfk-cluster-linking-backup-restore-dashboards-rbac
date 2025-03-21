@@ -2,6 +2,15 @@ set -e -u
 
 export NAMESPACE=confluent
 export TUTORIAL_HOME=demo
+
+mkdir assets/certs/generated || echo could not create directory $_
+openssl genrsa -out assets/certs/generated/ca-key.pem 2048
+openssl req -x509  -new -nodes \
+  -key assets/certs/generated/ca-key.pem \
+  -days 3650 \
+  -out assets/certs/generated/ca.pem \
+  -subj "/C=US/ST=CA/L=MVT/O=TestOrg/OU=Cloud/CN=TestCA"
+
 helm repo add confluentinc https://packages.confluent.io/helm
 kubectl create namespace $NAMESPACE || echo "Could not create namespace $NAMESPACE"
 

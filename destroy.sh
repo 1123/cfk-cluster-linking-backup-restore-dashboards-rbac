@@ -6,11 +6,9 @@ kubectl config set-context --current --namespace=$NAMESPACE > /dev/null
 
 kubectl delete -f strimzi-to-cp-link.yaml
 
-kubectl delete -f security/oauth/kraft/rbac/cp_components.yaml
-kubectl delete -f restproxy.yaml
-kubectl delete -f connect.yaml
-kubectl delete -f schemaregistry.yaml
-kubectl delete -f security/oauth/kraft/rbac/cp_components.yaml
+kubectl delete -f demo/restproxy.yaml
+kubectl delete -f demo/connect.yaml
+kubectl delete -f demo/schemaregistry.yaml
 
 kubectl delete secret oauth-jass 
 
